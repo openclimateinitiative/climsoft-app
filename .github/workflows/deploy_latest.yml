@@ -2,7 +2,7 @@ name: Deploy on EC2 - Latest
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "*" ]
 
 jobs:
   Deploy:
