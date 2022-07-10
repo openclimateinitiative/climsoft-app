@@ -1,0 +1,35 @@
+name: Deploy on EC2 - Latest
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy in EC2
+        env:
+            PRIVATE_KEY: ${{secrets.AWS_PRIVATE_KEY_LATEST}}
+            HOSTNAME : ${{secrets.HOSTNAME_LATEST}}
+            USERNAME : ${{secrets.USERNAME}}
+            HOST_FQDN: ${{secrets.LATEST_HOST_FQDN}}
+            AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+            AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+            AUTH_ENABLED: false
+            CLIMSOFT_API_ENABLED: true
+            MCH_API_ENABLED: false
+            SURFACE_API_ENABLED: false
+            PYGEOAPI_ENABLED: false
+
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -o SendEnv=AUTH_ENABLED -o SendEnv=HOST_FQDN -o SendEnv=AWS_ACCESS_KEY_ID -o SendEnv=AWS_SECRET_ACCESS_KEY -o SendEnv=CLIMSOFT_API_ENABLED -o SendEnv=SURFACE_API_ENABLED  -o SendEnv=MCH_API_ENABLED -o SendEnv=PYGEOAPI_ENABLED -i private_key ${USERNAME}@${HOSTNAME} '
+            cd /home/ubuntu/opencdms-api
+            git pull origin main
+            docker-compose -f ../opencdms-test-data/docker-compose.yml build
+            docker-compose -f ../opencdms-test-data/docker-compose.yml up -d mysql
+            sleep 15
+            docker-compose -f ../opencdms-api/docker-compose.prod.yml up -d --build
+          '
