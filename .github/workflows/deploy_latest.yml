@@ -1,8 +1,9 @@
 name: Deploy on EC2 - Latest
 
 on:
-  push:
-    branches: [ "*" ]
+  release:
+    types:
+      - published
 
 jobs:
   Deploy:
