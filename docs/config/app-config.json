@@ -1,7 +1,7 @@
 {
-  "dev.opencdms.org": {
+  "demo.opencdms.org": {
     "apis": [
-      { "name": "dev api", "base": "api.opencdms.org", "default": true }
+      { "name": "demo api", "base": "api.opencdms.org", "default": true }
     ],
     "defaultLanguage": "en-EN",
     "mode": 1
