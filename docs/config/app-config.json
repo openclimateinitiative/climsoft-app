@@ -6,7 +6,7 @@
       },
       "defaultDomain": "api (stable)",
       "defaultLanguage": "en-EN",
-      "defaultMode": "opencdms"
+      "defaultMode": "climsoft"
   },
   "kenya.openclimate.net": {
       "domains": {
@@ -14,6 +14,6 @@
       },
       "defaultDomain": "KMD",
       "defaultLanguage": "en-EN",
-      "defaultMode": "opencdms"
+      "defaultMode": "climsoft"
   }
 }
