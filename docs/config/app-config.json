@@ -1,16 +1,19 @@
 {
-  "demo.opencdms.org": {
-    "apis": [
-      { "name": "demo api", "base": "api-latest.opencdms.org", "default": true }
-    ],
-    "defaultLanguage": "en-EN",
-    "mode": 0
-  },
-  "ke.openclimate.net": {
-      "apis": [
-        { "name": "Kenya volunteer stations", "base": "api-latest.opencdms.org", "default": true }
-      ],
+  "dev.opencdms.org": {
+      "domains": {
+          "api-latest": "api-latest.opencdms.org",
+          "api (stable)": "api.opencdms.org"
+      },
+      "defaultDomain": "api (stable)",
       "defaultLanguage": "en-EN",
-      "mode": 1
+      "defaultMode": "climsoft"
+  },
+  "kenya.openclimate.net": {
+      "domains": {
+          "KMD": "kmd_prod.openclimate.net"
+      },
+      "defaultDomain": "KMD",
+      "defaultLanguage": "en-EN",
+      "defaultMode": "climsoft"
   }
 }
